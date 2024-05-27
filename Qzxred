@@ -140,7 +140,7 @@ end
 
 -- Adding Buttons to Each Tab
 local buttonTexts = {"69", "Button 2", "Button 3"}
-
+local buttonTexts = {"88", "", "",}
 for _, tabName in ipairs(tabs) do
     local tabFrame = tabFrames[tabName]
     for i, text in ipairs(buttonTexts) do
