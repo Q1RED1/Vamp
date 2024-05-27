@@ -139,7 +139,7 @@ local function createButton(parent, text, callback)
 end
 
 -- Adding Buttons to Each Tab
-local buttonTexts = {"Button 1", "Button 2", "Button 3"}
+local buttonTexts = {"69", "Button 2", "Button 3"}
 
 for _, tabName in ipairs(tabs) do
     local tabFrame = tabFrames[tabName]
