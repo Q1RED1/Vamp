@@ -1,48 +1,11 @@
--- Define a table to store whitelisted HWIDs
--- 1=qzxred
--- 2=
--- 3=
--- 4=
-local whitelist = {
-    ["1fbc2289-1f18-48c4-9b51-4a6001c8bbfe"] = true,
-    [""] = true,
-    [""] = true,
-    [""] = true,
-    [""] = true,
-    [""] = true,
-    [""] = true,
-    -- Add more trusted HWIDs as needed
-}
-
--- Function to check if a HWID is whitelisted
-local function isWhitelisted(hwid)
-    return whitelist[hwid] or false
-end
-
--- Function to handle access denial
-local function handleAccessDenied(hwid)
-    print("Access denied for HWID:", hwid)
-    -- You can implement further actions here, such as logging or notifications
-end
-
--- Main function to process HWID
-local function processHWID(hwid)
-    if isWhitelisted(hwid) then
-        print("Access granted for HWID:", hwid)
-        -- Your application logic for granting access goes here
-    else
-        handleAccessDenied(hwid)
-    end
-end
-
 local gui = Instance.new("ScreenGui")
 gui.Name = "CustomGUI"
 gui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
 -- Main Frame
 local mainFrame = Instance.new("Frame")
-mainFrame.Size = UDim2.new(0, 455, 0, 280)
-mainFrame.Position = UDim2.new(0.5, -227, 0.5, -140)
+mainFrame.Size = UDim2.new(0, 500, 0, 350)
+mainFrame.Position = UDim2.new(0.5, -250, 0.5, -175)
 mainFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 mainFrame.Parent = gui
 
@@ -56,7 +19,7 @@ mainFrameCorner.Parent = mainFrame
 
 -- Topbar
 local topbar = Instance.new("Frame")
-topbar.Size = UDim2.new(0, 455, 0, 20)
+topbar.Size = UDim2.new(1, 0, 0, 30)
 topbar.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
 topbar.Parent = mainFrame
 
@@ -74,22 +37,22 @@ title.Text = "vamp.gg"
 title.TextColor3 = Color3.fromRGB(255, 255, 255)
 title.BackgroundTransparency = 1
 title.Font = Enum.Font.Sarpanch
-title.TextSize = 14
+title.TextSize = 20
 title.Parent = topbar
 
 -- Tabs
-local tabs = {"Legit", "Rage", "misc"}
+local tabs = {"Legit", "Rage", "Misc"}
 local tabFrames = {}
 
 for i, tabName in ipairs(tabs) do
     local tabButton = Instance.new("TextButton")
-    tabButton.Size = UDim2.new(0, 150, 0, 20)
-    tabButton.Position = UDim2.new(0, (i-1)*150, 0, 20)
+    tabButton.Size = UDim2.new(0, 150, 0, 30)
+    tabButton.Position = UDim2.new(0, (i-1)*150, 0, 30)
     tabButton.Text = tabName
     tabButton.TextColor3 = Color3.fromRGB(255, 255, 255)
     tabButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
     tabButton.Font = Enum.Font.Sarpanch
-    tabButton.TextSize = 14
+    tabButton.TextSize = 18
     tabButton.Parent = mainFrame
 
     local tabButtonCorner = Instance.new("UICorner")
@@ -97,11 +60,11 @@ for i, tabName in ipairs(tabs) do
     tabButtonCorner.Parent = tabButton
 
     local tabFrame = Instance.new("ScrollingFrame")
-    tabFrame.Size = UDim2.new(1, 0, 1, -40)
-    tabFrame.Position = UDim2.new(0, 0, 0, 40)
+    tabFrame.Size = UDim2.new(1, 0, 1, -60)
+    tabFrame.Position = UDim2.new(0, 0, 0, 60)
     tabFrame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
     tabFrame.Visible = i == 1
-    tabFrame.CanvasSize = UDim2.new(0, 0, 2, 0) -- Adjust based on content
+    tabFrame.CanvasSize = UDim2.new(0, 0, 2, 0)
     tabFrame.ScrollBarThickness = 6
     tabFrame.ScrollBarImageColor3 = Color3.fromRGB(255, 0, 0)
     tabFrame.Parent = mainFrame
@@ -123,12 +86,12 @@ end
 -- Button Function
 local function createButton(parent, text, callback)
     local button = Instance.new("TextButton")
-    button.Size = UDim2.new(0, 100, 0, 25)
+    button.Size = UDim2.new(0, 150, 0, 50)
     button.Text = text
     button.TextColor3 = Color3.fromRGB(255, 255, 255)
     button.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
     button.Font = Enum.Font.Sarpanch
-    button.TextSize = 14
+    button.TextSize = 18
     button.Parent = parent
 
     local buttonCorner = Instance.new("UICorner")
@@ -140,26 +103,6 @@ end
 
 -- Custom Functions for Buttons
 local function legitButton1Func()
-      local configs = {
-    main = {
-        enabled = true,
-        aimlockkey = "q",
-        prediction = 0.1580,
-        aimpart = 'Head',
-        notifications = true
-    }
-}
-
-local boxsettings = {
-    box = {
-        Showbox = true,
-        boxsize = Vector3.new(3.3, 3, 2.8), -- Box Size
-        markercolor = Color3.fromRGB(255, 255, 255),
-        markersize = UDim2.new(1, 0, 1, 0)
-    }
-}
-
-loadstring(game:HttpGet("https://raw.githubusercontent.com/r1FH/whitelist1/main/tapbot%20loader.lua"))()
     print("Legit Button 1 clicked")
 end
 
@@ -207,7 +150,7 @@ local buttonConfigs = {
         {text = "Button 2", func = rageButton2Func},
         {text = "Button 3", func = rageButton3Func},
     },
-    misc = {
+    Misc = {
         {text = "Button 1", func = miscButton1Func},
         {text = "Button 2", func = miscButton2Func},
         {text = "Button 3", func = miscButton3Func},
@@ -217,7 +160,8 @@ local buttonConfigs = {
 for tabName, buttons in pairs(buttonConfigs) do
     local tabFrame = tabFrames[tabName]
     for i, buttonConfig in ipairs(buttons) do
-        createButton(tabFrame, buttonConfig.text, buttonConfig.func).Position = UDim2.new(0, 10, 0, 10 + (i-1) * 35)
+        local button = createButton(tabFrame, buttonConfig.text, buttonConfig.func)
+        button.Position = UDim2.new(0, 10, 0, 10 + (i-1) * 60)
     end
 end
 
