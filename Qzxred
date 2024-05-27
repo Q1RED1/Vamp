@@ -138,15 +138,66 @@ local function createButton(parent, text, callback)
     button.MouseButton1Click:Connect(callback)
 end
 
--- Adding Buttons to Each Tab
-local buttonTexts = {"69", "Button 2", "Button 3"}
-local buttonTexts = {"88", "", "",}
-for _, tabName in ipairs(tabs) do
+-- Custom Functions for Buttons
+local function legitButton1Func()
+    print("Legit Button 1 clicked")
+end
+
+local function legitButton2Func()
+    print("Legit Button 2 clicked")
+end
+
+local function legitButton3Func()
+    print("Legit Button 3 clicked")
+end
+
+local function rageButton1Func()
+    print("Rage Button 1 clicked")
+end
+
+local function rageButton2Func()
+    print("Rage Button 2 clicked")
+end
+
+local function rageButton3Func()
+    print("Rage Button 3 clicked")
+end
+
+local function miscButton1Func()
+    print("Misc Button 1 clicked")
+end
+
+local function miscButton2Func()
+    print("Misc Button 2 clicked")
+end
+
+local function miscButton3Func()
+    print("Misc Button 3 clicked")
+end
+
+-- Adding Buttons to Each Tab with Custom Functions
+local buttonConfigs = {
+    Legit = {
+        {text = "Button 1", func = legitButton1Func},
+        {text = "Button 2", func = legitButton2Func},
+        {text = "Button 3", func = legitButton3Func},
+    },
+    Rage = {
+        {text = "Button 1", func = rageButton1Func},
+        {text = "Button 2", func = rageButton2Func},
+        {text = "Button 3", func = rageButton3Func},
+    },
+    misc = {
+        {text = "Button 1", func = miscButton1Func},
+        {text = "Button 2", func = miscButton2Func},
+        {text = "Button 3", func = miscButton3Func},
+    }
+}
+
+for tabName, buttons in pairs(buttonConfigs) do
     local tabFrame = tabFrames[tabName]
-    for i, text in ipairs(buttonTexts) do
-        createButton(tabFrame, text, function()
-            print(tabName .. " - " .. text .. " clicked")
-        end).Position = UDim2.new(0, 10, 0, 10 + (i-1) * 35)
+    for i, buttonConfig in ipairs(buttons) do
+        createButton(tabFrame, buttonConfig.text, buttonConfig.func).Position = UDim2.new(0, 10, 0, 10 + (i-1) * 35)
     end
 end
 
